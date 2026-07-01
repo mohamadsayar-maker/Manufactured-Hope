@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#050505" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>TraceCam</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app" aria-label="TraceCam scanner camera app">
+    <section class="camera-stage" id="cameraStage">
+      <video id="video" playsinline autoplay muted></video>
+      <canvas id="liveCanvas" class="hidden-canvas"></canvas>
+      <div class="dim dim-left"></div>
+      <div class="dim dim-right"></div>
+      <div class="scan-window" id="scanWindow" aria-hidden="true"><span class="scan-glow"></span></div>
+      <div class="hud top-hud"><div><h1>TraceCam</h1><p id="statusText">Move your phone like a handheld scanner.</p></div><button id="cameraButton" class="icon-button" title="Restart camera" aria-label="Restart camera">↻</button></div>
+      <div class="progress-shell" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+      <div class="preview-card" id="previewCard" aria-label="Scan preview"><canvas id="outputCanvas"></canvas><span id="emptyPreview">Your trace appears here</span></div>
+      <div class="controls">
+        <div class="control-row compact"><label>Mode<select id="modeSelect"><option value="vertical">Vertical slit</option><option value="horizontal">Horizontal slit</option></select></label><label>Direction<select id="directionSelect"><option value="forward">Forward</option><option value="reverse">Reverse</option></select></label></div>
+        <div class="control-row sliders"><label>Width <span id="widthValue">6</span><input id="slitWidth" type="range" min="2" max="32" value="6" /></label><label>Speed <span id="speedValue">1</span><input id="speed" type="range" min="1" max="8" value="1" /></label><label>Glitch <span id="glitchValue">8</span>%<input id="glitch" type="range" min="0" max="35" value="8" /></label></div>
+        <div class="shutter-row"><button id="retakeButton" class="secondary-button">Retake</button><button id="shutterButton" class="shutter-button" aria-label="Hold to scan"><span></span></button><button id="saveButton" class="secondary-button">Save</button></div>
+      </div>
+    </section>
+    <div class="permission-card" id="permissionCard"><h2>TraceCam needs camera access</h2><p>Use the iPhone back camera, hold the shutter, and slowly move across a face, object, or document.</p><button id="startButton">Start camera</button><small>Best on iPhone Safari or Chrome over HTTPS.</small></div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
